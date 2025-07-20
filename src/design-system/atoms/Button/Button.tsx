@@ -18,6 +18,14 @@ import styled, { css } from 'styled-components';
 import { colors, typography, spacing, borderRadius } from '../../tokens';
 
 // Tipos para las variantes de botón
+// Podemos hacer como en avatar que tiene esto dentro de la interface pero por escalabilidad y como es un componente que puede teenr multiples variables creamos el type
+// Funciona como interface pero es mas simple
+
+/*  
+  . Usa interface para objetos grandes o props de componentes.
+	•	Usa type para valores simples o uniones ('primary' | 'secondary').
+  */
+
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'accent';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
@@ -27,68 +35,74 @@ export interface ButtonProps {
   variant?: ButtonVariant;
   /** Tamaño del botón */
   size?: ButtonSize;
-  /** Estado de carga */
+  /** Estado de carga para manejar spinners por ejemplo*/
   loading?: boolean;
   /** Estado deshabilitado */
   disabled?: boolean;
-  /** Icono a mostrar */
+  /** Icono a mostrar - Cualuier cosa que react pueda renderizar */
   icon?: React.ReactNode;
   /** Posición del icono */
   iconPosition?: 'left' | 'right';
-  /** Contenido del botón */
+  /** Contenido del botón OBLIGATORIO */
   children: React.ReactNode;
   /** Clases CSS adicionales */
   className?: string;
   /** Función onClick */
+  /*
+  Esta propiedad (onClick) puede existir o no.
+  Pero si existe, debe ser una función que reciba un evento de mouse sobre un botón HTML y no devuelva nada.
+  */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  /** Tipo de botón */
+  /** Tipo de botón (BOTON, FOMRULARIO, RESETEAR) */
   type?: 'button' | 'submit' | 'reset';
 }
 
 // Estilos base del botón
+// Porque no usamos style.div? es porque es solo css para inyectarlo en otro lugar, no genera un componente
 const baseButtonStyles = css`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: ${spacing[3]};
-  border: none;
-  border-radius: ${borderRadius.lg};
-  font-family: ${typography.fontFamily.primary};
-  font-weight: ${typography.fontWeight.medium};
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  outline: none;
-  position: relative;
-  overflow: hidden;
+  display: inline-flex;               // Se comporta como un elemento en línea y usa flexbox
+  align-items: center;               // Centra verticalmente el contenido
+  justify-content: center;          // Centra horizontalmente el contenido
+  gap: ${spacing[3]};               // Espacio entre elementos internos, como ícono y texto
+  border: none;                     // Elimina el borde por defecto del botón
+  border-radius: ${borderRadius.lg}; // Hace que las esquinas sean redondeadas
+  font-family: ${typography.fontFamily.primary}; // Usa la fuente definida en los tokens
+  font-weight: ${typography.fontWeight.medium};  // Usa un peso de fuente medio
+  cursor: pointer;                  // Muestra una mano al pasar el mouse
+  transition: all 0.2s ease-in-out; // Aplica transición suave a cualquier cambio
+  text-decoration: none;           // Elimina subrayado si hay texto tipo enlace
+  outline: none;                   // Elimina el borde azul por defecto al enfocar
+  position: relative;              // Necesario para que elementos hijos con posición absoluta se basen en este contenedor
+  overflow: hidden;                // Oculta cualquier contenido que se salga del botón
+
+  //Efecto ripple 
   
-  /* Efecto de ripple */
   &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
+    content: '';                   // Crea un pseudo-elemento invisible sin texto
+    position: absolute;           // Se posiciona relativo al botón
+    top: 50%;                      // Centro vertical del botón
+    left: 50%;                     // Centro horizontal del botón
+    width: 0;                      // Comienza sin tamaño visible
     height: 0;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.3s ease-out, height 0.3s ease-out;
+    border-radius: 50%;           // Lo hace completamente circular
+    background-color: rgba(255, 255, 255, 0.3); // Color semitransparente para el efecto ripple
+    transform: translate(-50%, -50%); // Lo centra exactamente en el botón
+    transition: width 0.3s ease-out, height 0.3s ease-out; // Anima el crecimiento del círculo
   }
-  
+
   &:active::before {
-    width: 300px;
-    height: 300px;
+    width: 300px;                  // Cuando haces clic, el círculo crece a 300px de ancho
+    height: 300px;                 // Y también a 300px de alto
   }
-  
+
   &:focus {
-    box-shadow: 0 0 0 3px ${colors.primary[200]};
+    box-shadow: 0 0 0 3px ${colors.primary[200]}; // Sombra visible al enfocar el botón (teclado)
   }
-  
+
   &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none !important;
+    opacity: 0.6;                  // Botón más transparente para indicar que no está activo
+    cursor: not-allowed;           // Cursor de prohibido
+    transform: none !important;    // Quita cualquier transformación como animaciones
   }
 `;
 
@@ -244,14 +258,11 @@ const LoadingSpinner = styled.div`
 
 /**
  * Componente Button
- * 
  * @example
- * ```tsx
  * <Button variant="primary" size="md">Click me</Button>
- * <Button variant="outline" icon={<Icon />}>With Icon</Button>
- * <Button variant="danger" loading>Loading...</Button>
- * ```
  */
+
+
 export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
