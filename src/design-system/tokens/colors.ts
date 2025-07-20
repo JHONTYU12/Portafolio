@@ -1,34 +1,46 @@
+// Es solo Typescript no es necesariamente reacr
+
 /**
  * TOKENS - COLORS
- * 
- * Los tokens de colores definen la paleta de colores del sistema de diseño.
- * Estos son los valores base que se utilizan en todos los componentes.
- * 
- * Estructura del diseño atómico:
- * - Tokens: Valores base (colores, tipografía, espaciado)
- * - Átomos: Componentes más pequeños (botones, inputs, textos)
- * - Moléculas: Combinación de átomos (formularios, cards)
- * - Organismos: Secciones complejas (header, footer, sidebar)
- * - Plantillas: Layouts de páginas
- * - Páginas: Implementación final
+ *
+ * Este archivo define los colores base del sistema de diseño (diseño atómico).
+ * Si queremos cambiar un color en todo el proyecto, basta con cambiarlo aquí.
+ *
+ * Niveles del diseño atómico:
+ * - Tokens: valores base (colores, tipografía, espaciado)
  */
 
+
+/*  colors = {
+  primary: { ... },
+  secondary: { ... },
+  accent: { ... },
+  success: { ... },
+  warning: { ... },
+  error: { ... },
+  background: { ... },
+  text: { ... },
+  border: { ... },
+} */
+
+//Constante es la forma de  guardar un valor que no cambia
+
 export const colors = {
-  // Colores primarios
-  primary: {
-    50: '#f0f9ff',
+  // Colores primarios (usados para botones principales, enlaces, etc.)
+primary: {
+    50: '#f0f9ff',  // tono más claro
     100: '#e0f2fe',
     200: '#bae6fd',
     300: '#7dd3fc',
     400: '#38bdf8',
-    500: '#0ea5e9',
+    500: '#0ea5e9',  // tono principal
     600: '#0284c7',
     700: '#0369a1',
     800: '#075985',
-    900: '#0c4a6e',
+    900: '#0c4a6e',  // tono más oscuro
   },
-  
-  // Colores secundarios
+
+  //Colores secundarios (se usan como color de apoyo)
   secondary: {
     50: '#f8fafc',
     100: '#f1f5f9',
@@ -41,8 +53,8 @@ export const colors = {
     800: '#1e293b',
     900: '#0f172a',
   },
-  
-  // Colores de acento
+
+  //Colores de acento (resaltan detalles o decoraciones)
   accent: {
     50: '#fdf4ff',
     100: '#fae8ff',
@@ -55,48 +67,49 @@ export const colors = {
     800: '#86198f',
     900: '#701a75',
   },
-  
-  // Colores semánticos
+
+  // ✅ Colores semánticos (para mostrar estados como éxito, error o advertencia)
+
   success: {
     50: '#f0fdf4',
     100: '#dcfce7',
     200: '#bbf7d0',
     300: '#86efac',
     400: '#4ade80',
-    500: '#22c55e',
+    500: '#22c55e',  // verde éxito
     600: '#16a34a',
     700: '#15803d',
     800: '#166534',
     900: '#14532d',
   },
-  
+
   warning: {
     50: '#fffbeb',
     100: '#fef3c7',
     200: '#fde68a',
     300: '#fcd34d',
     400: '#fbbf24',
-    500: '#f59e0b',
+    500: '#f59e0b',  // amarillo advertencia
     600: '#d97706',
     700: '#b45309',
     800: '#92400e',
     900: '#78350f',
   },
-  
+
   error: {
     50: '#fef2f2',
     100: '#fee2e2',
     200: '#fecaca',
     300: '#fca5a5',
     400: '#f87171',
-    500: '#ef4444',
+    500: '#ef4444',  // rojo error
     600: '#dc2626',
     700: '#b91c1c',
     800: '#991b1b',
     900: '#7f1d1d',
   },
-  
-  // Colores neutros
+
+  // ⚪ Colores neutros (grises, sirven para fondos, bordes, texto apagado)
   neutral: {
     50: '#fafafa',
     100: '#f5f5f5',
@@ -109,33 +122,34 @@ export const colors = {
     800: '#262626',
     900: '#171717',
   },
-  
-  // Colores de fondo (tema oscuro)
+
+  // 🌑 Colores de fondo (modo oscuro)
   background: {
-    primary: '#0a0a0a',
-    secondary: '#111111',
-    tertiary: '#1a1a1a',
-    dark: '#000000',
-    card: '#1a1a1a',
-    elevated: '#222222',
+    primary: '#0a0a0a',   // fondo principal
+    secondary: '#111111', // fondo de secciones
+    tertiary: '#1a1a1a',  // fondo complementario
+    dark: '#000000',      // negro absoluto
+    card: '#1a1a1a',      // fondo de tarjetas
+    elevated: '#222222',  // elementos que "flotan"
   },
-  
-  // Colores de texto (tema oscuro)
+
+  // ✍️ Colores de texto (modo oscuro)
   text: {
-    primary: '#ffffff',
-    secondary: '#e5e5e5',
-    tertiary: '#a3a3a3',
-    inverse: '#000000',
-    muted: '#6b7280',
-    accent: '#38bdf8',
+    primary: '#ffffff',   // texto principal (blanco)
+    secondary: '#e5e5e5', // texto secundario
+    tertiary: '#a3a3a3',  // texto menos importante
+    inverse: '#000000',   // texto sobre fondo claro
+    muted: '#6b7280',     // texto desactivado o apagado
+    accent: '#38bdf8',    // texto de énfasis
   },
-  
-  // Colores de borde (tema oscuro)
+
+  // Colores para bordes
   border: {
-    primary: '#333333',
-    secondary: '#404040',
-    accent: '#38bdf8',
+    primary: '#333333',   // borde general
+    secondary: '#404040', // borde más tenue
+    accent: '#38bdf8',    // borde resaltado
   },
 } as const;
-
-export type ColorToken = typeof colors; 
+/**
+ “as const le dice al sistema que todos estos colores son fijos, que no van a cambiar, y que debe tratarlos como si fueran definitivos. Esto evita errores, ayuda a autocompletar los nombres, y mantiene el código más seguro.”
+ */

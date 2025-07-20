@@ -9,14 +9,3 @@ export * from './colors';
 export * from './typography';
 export * from './spacing';
 
-// Re-exportar tipos para facilitar el uso
-export type { ColorToken } from './colors';
-export type { TypographyToken } from './typography';
-export type {
-  SpacingToken,
-  BorderRadiusToken,
-  ShadowToken,
-  ZIndexToken,
-  BreakpointToken,
-  ContainerToken,
-} from './spacing'; 

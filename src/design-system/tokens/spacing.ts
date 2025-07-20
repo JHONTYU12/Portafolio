@@ -94,9 +94,3 @@ export const container = {
   '2xl': '1536px',
 } as const;
 
-export type SpacingToken = typeof spacing;
-export type BorderRadiusToken = typeof borderRadius;
-export type ShadowToken = typeof shadows;
-export type ZIndexToken = typeof zIndex;
-export type BreakpointToken = typeof breakpoints;
-export type ContainerToken = typeof container; 
