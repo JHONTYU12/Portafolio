@@ -1,6 +1,6 @@
 # 🎨 Portfolio con Sistema de Diseño Atómico
 
-Este proyecto es un portafolio personal desarrollado con React y TypeScript que implementa un **sistema de diseño atómico** completo. El proyecto está diseñado para ser presentado como exposición académica, mostrando la implementación práctica de la metodología de diseño atómico.
+Este proyecto es un portafolio personal desarrollado con React y TypeScript que implementa un **sistema de diseño atómico** completo. 
 
 ## 📚 Sistema de Diseño Atómico
 
