@@ -1,46 +1,282 @@
-# Getting Started with Create React App
+# 🎨 Portfolio con Sistema de Diseño Atómico
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es un portafolio personal desarrollado con React y TypeScript que implementa un **sistema de diseño atómico** completo. El proyecto está diseñado para ser presentado como exposición académica, mostrando la implementación práctica de la metodología de diseño atómico.
 
-## Available Scripts
+## 📚 Sistema de Diseño Atómico
 
-In the project directory, you can run:
+### Jerarquía del Diseño Atómico
 
-### `npm start`
+El proyecto implementa la metodología de diseño atómico de Brad Frost, organizando los componentes en una jerarquía clara:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PÁGINAS (Pages)                         │
+│              Implementación final de la UI                 │
+└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                  PLANTILLAS (Templates)                    │
+│              Layouts y estructuras de páginas              │
+└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                  ORGANISMOS (Organisms)                    │
+│              Secciones complejas de la UI                  │
+│              (Header, Footer, Sidebar, etc.)              │
+└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                  MOLÉCULAS (Molecules)                    │
+│              Combinación de átomos                         │
+│              (Cards, Forms, Navigation, etc.)             │
+└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                    ÁTOMOS (Atoms)                         │
+│              Componentes más pequeños                      │
+│              (Buttons, Text, Inputs, etc.)                │
+└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                    TOKENS (Tokens)                        │
+│              Valores base del sistema                      │
+│              (Colors, Typography, Spacing, etc.)          │
+└─────────────────────────────────────────────────────────────┘
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Estructura del Proyecto
 
-### `npm test`
+```
+src/
+├── design-system/
+│   ├── tokens/           # Valores base (colores, tipografía, espaciado)
+│   │   ├── colors.ts
+│   │   ├── typography.ts
+│   │   ├── spacing.ts
+│   │   └── index.ts
+│   ├── atoms/            # Componentes más pequeños
+│   │   ├── Text/
+│   │   │   ├── Text.tsx
+│   │   │   └── Text.stories.tsx
+│   │   ├── Button/
+│   │   │   ├── Button.tsx
+│   │   │   └── Button.stories.tsx
+│   │   └── index.ts
+│   ├── molecules/        # Combinación de átomos
+│   │   ├── Card/
+│   │   │   └── Card.tsx
+│   │   └── index.ts
+│   ├── organisms/        # Secciones complejas
+│   │   ├── Header/
+│   │   │   └── Header.tsx
+│   │   └── index.ts
+│   ├── pages/           # Implementación final
+│   │   ├── HomePage/
+│   │   │   └── HomePage.tsx
+│   │   └── index.ts
+│   └── index.ts         # Exportaciones principales
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Características del Proyecto
 
-### `npm run build`
+### ✅ Implementado
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Sistema de Tokens**: Colores, tipografía, espaciado y sombras
+- **Átomos**: Text y Button con múltiples variantes
+- **Moléculas**: Card con diferentes configuraciones
+- **Organismos**: Header con navegación responsive
+- **Páginas**: HomePage completa con secciones
+- **Storybook**: Documentación interactiva de componentes
+- **TypeScript**: Tipado completo para mejor desarrollo
+- **Styled Components**: CSS-in-JS para estilos modulares
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🎯 Funcionalidades del Portfolio
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Diseño Minimalista**: Interfaz limpia y moderna
+- **Responsive**: Adaptable a diferentes dispositivos
+- **Sección Hero**: Presentación personal con avatar
+- **Proyectos Destacados**: Cards con información de proyectos
+- **Tecnologías**: Grid de tecnologías utilizadas
+- **Navegación**: Header fijo con menú móvil
 
-### `npm run eject`
+## 🛠️ Tecnologías Utilizadas
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **React 18**: Biblioteca de UI
+- **TypeScript**: Tipado estático
+- **Styled Components**: CSS-in-JS
+- **Storybook**: Documentación de componentes
+- **Framer Motion**: Animaciones (preparado)
+- **React Router**: Navegación (preparado)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📦 Instalación y Uso
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Prerrequisitos
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Node.js 16+ 
+- npm o yarn
 
-## Learn More
+### Instalación
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Clonar el repositorio
+git clone <repository-url>
+cd atomic-portfolio
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Instalar dependencias
+npm install
+
+# Iniciar el servidor de desarrollo
+npm start
+```
+
+### Scripts Disponibles
+
+```bash
+# Desarrollo
+npm start              # Inicia el servidor de desarrollo
+npm run build          # Construye para producción
+npm run test           # Ejecuta las pruebas
+
+# Storybook
+npm run storybook      # Inicia Storybook
+npm run build-storybook # Construye Storybook
+```
+
+## 📖 Documentación con Storybook
+
+El proyecto incluye Storybook para documentar todos los componentes:
+
+```bash
+npm run storybook
+```
+
+### Historias Disponibles
+
+- **Atoms/Text**: Todas las variantes de texto
+- **Atoms/Button**: Todas las variantes de botón
+- **Molecules/Card**: Diferentes configuraciones de cards
+- **Organisms/Header**: Header con navegación
+
+## 🎨 Sistema de Tokens
+
+### Colores
+
+```typescript
+// Paleta de colores completa
+colors.primary[500]    // Color principal
+colors.secondary[500]  // Color secundario
+colors.success[500]    // Color de éxito
+colors.error[500]      // Color de error
+colors.text.primary    // Texto principal
+```
+
+### Tipografía
+
+```typescript
+// Variantes de texto predefinidas
+<Text variant="h1">Título Principal</Text>
+<Text variant="body">Párrafo normal</Text>
+<Text variant="code">console.log('Hello');</Text>
+```
+
+### Espaciado
+
+```typescript
+// Sistema de espaciado basado en 4px
+spacing[1]  // 4px
+spacing[4]  // 16px
+spacing[8]  // 32px
+```
+
+## 🧩 Componentes del Sistema
+
+### Átomos
+
+#### Text
+```tsx
+<Text variant="h1" color="primary">
+  Título Principal
+</Text>
+```
+
+#### Button
+```tsx
+<Button variant="primary" size="md" loading>
+  Click me
+</Button>
+```
+
+### Moléculas
+
+#### Card
+```tsx
+<Card 
+  title="Mi Proyecto"
+  subtitle="Descripción del proyecto"
+  image={{ src: "/image.jpg", alt: "Proyecto" }}
+  actions={<Button>Ver más</Button>}
+>
+  Contenido de la tarjeta
+</Card>
+```
+
+### Organismos
+
+#### Header
+```tsx
+<Header
+  logo={<Text variant="h3">Mi Portfolio</Text>}
+  navigation={[
+    { label: 'Inicio', href: '/', active: true },
+    { label: 'Proyectos', href: '/proyectos' }
+  ]}
+  actions={<Button>Descargar CV</Button>}
+/>
+```
+
+## 📱 Responsive Design
+
+El proyecto está completamente optimizado para dispositivos móviles:
+
+- **Mobile First**: Diseño pensado primero en móviles
+- **Breakpoints**: Sistema de breakpoints consistente
+- **Navegación Móvil**: Menú hamburguesa para móviles
+- **Grid Responsive**: Layouts que se adaptan automáticamente
+
+## 🎯 Casos de Uso Académico
+
+Este proyecto es ideal para:
+
+- **Exposiciones**: Demuestra implementación práctica de diseño atómico
+- **Portfolio**: Muestra habilidades de desarrollo frontend
+- **Documentación**: Storybook como ejemplo de documentación técnica
+- **Arquitectura**: Ejemplo de organización de código escalable
+
+## 🔧 Personalización
+
+### Cambiar Colores
+
+Edita `src/design-system/tokens/colors.ts`:
+
+```typescript
+export const colors = {
+  primary: {
+    500: '#tu-color-principal',
+    // ... más colores
+  }
+}
+```
+
+### Agregar Nuevos Componentes
+
+1. Crea el componente en la carpeta correspondiente
+2. Agrega las historias de Storybook
+3. Exporta desde el index.ts correspondiente
+4. Documenta en el README
+
+## 📄 Licencia
+
+Este proyecto es para uso educativo y demostrativo.
+
+## 👨‍💻 Autor
+
+**Josue Peralta** - Estudiante de Interacción Humano Computador
+
+---
+
+*Este proyecto demuestra la implementación práctica del sistema de diseño atómico, mostrando cómo organizar componentes de manera escalable y mantenible.*
