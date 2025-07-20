@@ -1,104 +1,94 @@
 body {
-  margin: 0;
+  margin: 0; /* Elimina el espacio por defecto alrededor de la página */
+  
+  /* Lista de fuentes: usa 'Inter' si está disponible, si no, prueba con otras similares */
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+
+  /* Suaviza la tipografía para que se vea mejor en navegadores WebKit (Chrome, Safari) */
   -webkit-font-smoothing: antialiased;
+
+  /* Suaviza la tipografía en Firefox y otros navegadores */
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0a0a0a;
-  color: #ffffff;
-  line-height: 1.6;
+
+  background-color: #0a0a0a; /* Fondo oscuro de la página */
+  color: #ffffff; /* Texto en color blanco */
+  line-height: 1.6; /* Altura de línea para que el texto sea más legible */
 }
 
+/* Estilos para bloques de código */
 code {
+  /* Tipografías monoespaciadas, especiales para mostrar código */
   font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+/* Aplica esta regla a TODOS los elementos */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Hace que padding y borde no aumenten el tamaño total del elemento */
 }
 
+/* Estilos generales para el documento HTML */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Hace que los enlaces que se mueven por la página se desplacen suavemente */
 }
 
-/* Mejoras de accesibilidad */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+/* PERSONALIZACIÓN DEL SCROLL (barra de desplazamiento) */
 
-/* Estilos para el scrollbar */
+/* Estilo general de la scrollbar (la parte gris del costado) */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 8px; /* Ancho de la barra de desplazamiento */
 }
 
+/* Fondo de la barra de desplazamiento */
 ::-webkit-scrollbar-track {
-  background: #111111;
+  background: #111111; /* Muy oscuro */
 }
 
+/* Parte que se mueve al hacer scroll */
 ::-webkit-scrollbar-thumb {
-  background: #333333;
-  border-radius: 4px;
+  background: #333333; /* Gris medio */
+  border-radius: 4px; /* Bordes redondeados */
 }
 
+/* Cuando pasas el mouse sobre la barra */
 ::-webkit-scrollbar-thumb:hover {
-  background: #444444;
+  background: #444444; /* Un poco más claro */
 }
 
-/* Estilos para selección de texto */
+/* ESTILO DE SELECCIÓN DE TEXTO */
+
+/* Cuando seleccionas texto con el mouse */
 ::selection {
-  background-color: #0ea5e9;
-  color: #ffffff;
+  background-color: #0ea5e9; /* Azul brillante */
+  color: #ffffff; /* Texto blanco */
 }
 
+/* Para Firefox (usa su propia regla) */
 ::-moz-selection {
   background-color: #0ea5e9;
   color: #ffffff;
 }
 
-/* Estilos para focus visible */
-*:focus-visible {
-  outline: 2px solid #0ea5e9;
-  outline-offset: 2px;
-}
-
-/* Estilos para imágenes */
+/* Las imágenes no se salen de su contenedor */
 img {
-  max-width: 100%;
-  height: auto;
+  max-width: 100%; /* Nunca más grande que el contenedor */
+  height: auto; /* Mantiene la proporción original */
 }
 
-/* Estilos para enlaces */
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* CONTENEDOR PRINCIPAL DE LA APP (div con id="root") */
 
-/* Estilos para botones */
-button {
-  font-family: inherit;
-}
-
-/* Estilos para inputs */
-input, textarea, select {
-  font-family: inherit;
-}
-
-/* Estilos para el contenedor principal */
 #root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  min-height: 100vh; /* Ocupa el 100% del alto de la pantalla */
+  display: flex; /* Usa flexbox para alinear contenido */
+  flex-direction: column; /* Organiza los hijos de arriba a abajo */
 }
 
-/* Estilos para el contenedor de la app */
+/* CONTENEDOR PRINCIPAL DE LA APLICACIÓN EN REACT */
+
 .App {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  flex: 1; /* Ocupa todo el espacio disponible */
+  display: flex; /* También usa flexbox */
+  flex-direction: column; /* Alineación vertical de los hijos */
 }
