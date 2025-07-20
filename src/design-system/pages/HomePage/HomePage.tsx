@@ -169,6 +169,16 @@ export const HomePage: React.FC<HomePageProps> = ({
   const scrollToContacto = useScrollTo('contacto', 80);
   const scrollToProyectos = useScrollTo('proyectos', 80);
 
+  // Función para descargar el CV
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/cv.pdf';
+    link.download = 'Josue_Peralta_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <PageContainer className={className} {...props}>
       {/* Header - ORGANISMO */}
@@ -180,7 +190,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           { label: 'Tecnologías', href: '#tecnologias', active: activeSection === 'tecnologias' },
           { label: 'Contacto', href: '#contacto', active: activeSection === 'contacto' }
         ]}
-        actions={<Button variant="outline">Descargar CV</Button>}
+        actions={<Button variant="outline" onClick={handleDownloadCV}>Descargar CV</Button>}
         fixed
         scrollOffset={80}
       />
