@@ -11,10 +11,13 @@
  * - Plantillas: Layouts de páginas
  * - Páginas: Implementación final
  */
-
+//Libreria React
 import React from 'react';
+//Importamos nuestras paguinas
 import { HomePage } from './design-system';
 
+
+//Funcion que define el componente
 function App() {
   return (
     <div className="App">
