@@ -66,10 +66,9 @@ const fontSizeMap = {
  * Este es el componente visual del avatar, con estilos ya aplicados.
  * Tiene forma redonda, sombra, borde de color, y animación al hacer hover.
  */
-
 // Estoy creando un div con estilos personalizados usando styled-components nos dice como se va a usar
 //styled.(nombre de la etiqueta como se va a comportar)
-// 	•	Pick<AvatarProps, 'size'> significa: Solo quiero usar la propiedad size de ese conjunto AvatarProps”.
+//   •   Pick<AvatarProps, 'size'> significa: Solo quiero usar la propiedad size de ese conjunto AvatarProps”.
 const StyledAvatar = styled.div<Pick<AvatarProps, 'size'>>`
 
 

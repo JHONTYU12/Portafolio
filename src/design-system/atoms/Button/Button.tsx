@@ -15,6 +15,7 @@
 
 import React from 'react';
 import styled, { css } from 'styled-components';
+// Tenemos css para poder crear componentes que sean solo sean estilos no define estilos reutilizables
 import { colors, typography, spacing, borderRadius } from '../../tokens';
 
 // Tipos para las variantes de botón
@@ -75,30 +76,40 @@ const baseButtonStyles = css`
   position: relative;              // Necesario para que elementos hijos con posición absoluta se basen en este contenedor
   overflow: hidden;                // Oculta cualquier contenido que se salga del botón
 
-  //Efecto ripple 
+  //Efecto rippl
+  // Al dar click salga un circulo 
+
+  // & representa el componente actual de ahi ":estado del componente"
+  // & :: es un pseduo elemento como un div invisible no es elemento HTML
+  // Es una capa adicional creada con css
   
   &::before {
-    content: '';                   // Crea un pseudo-elemento invisible sin texto
-    position: absolute;           // Se posiciona relativo al botón
-    top: 50%;                      // Centro vertical del botón
-    left: 50%;                     // Centro horizontal del botón
+    content: '';                   // Crea un elemento invisible sin texto dentro del boton
+    position: absolute;           // Se coloque encima del boton
+    top: 50%;                      // Centro la esquina en la vertical del botón
+    left: 50%;                     // Centro la esquina en la  horizontal del botón 
     width: 0;                      // Comienza sin tamaño visible
     height: 0;
     border-radius: 50%;           // Lo hace completamente circular
     background-color: rgba(255, 255, 255, 0.3); // Color semitransparente para el efecto ripple
-    transform: translate(-50%, -50%); // Lo centra exactamente en el botón
+    transform: translate(-50%, -50%); // Lo centra exactamente en el botón para cuadno la animacion inicie sepa su centro
     transition: width 0.3s ease-out, height 0.3s ease-out; // Anima el crecimiento del círculo
   }
+
+  // Cuando el componente este active en la capa before vamos hacer .....
 
   &:active::before {
     width: 300px;                  // Cuando haces clic, el círculo crece a 300px de ancho
     height: 300px;                 // Y también a 300px de alto
   }
 
+  
+  //Al usar tabulacion para pasar entre botones
   &:focus {
-    box-shadow: 0 0 0 3px ${colors.primary[200]}; // Sombra visible al enfocar el botón (teclado)
+    box-shadow: 0 0 0 2px ${colors.primary[200]}; // Sombra visible al enfocar el botón (teclado)
   }
 
+  // Boton desactivado 
   &:disabled {
     opacity: 0.6;                  // Botón más transparente para indicar que no está activo
     cursor: not-allowed;           // Cursor de prohibido
@@ -128,13 +139,16 @@ const sizeStyles = {
   `,
 };
 
+
 // Estilos para diferentes variantes
 const variantStyles = {
+  // Azul con gradiente
   primary: css`
     background: linear-gradient(135deg, ${colors.primary[600]}, ${colors.primary[700]});
     color: ${colors.text.inverse};
     box-shadow: 0 4px 16px rgba(14, 165, 233, 0.3);
-    
+
+    // Aplica solo si el elemento no esta desabilitado
     &:hover:not(:disabled) {
       background: linear-gradient(135deg, ${colors.primary[700]}, ${colors.primary[800]});
       box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
@@ -146,7 +160,7 @@ const variantStyles = {
       transform: translateY(0);
     }
   `,
-  
+  // Fondo gris
   secondary: css`
     background-color: ${colors.background.secondary};
     color: ${colors.text.primary};
@@ -164,7 +178,7 @@ const variantStyles = {
       transform: translateY(0);
     }
   `,
-  
+  // trasnparente con fordes celestes
   outline: css`
     background-color: transparent;
     color: ${colors.text.accent};
@@ -182,7 +196,7 @@ const variantStyles = {
       transform: translateY(0);
     }
   `,
-  
+  // trasnparente con texto gris
   ghost: css`
     background-color: transparent;
     color: ${colors.text.secondary};
@@ -198,7 +212,7 @@ const variantStyles = {
       transform: translateY(0);
     }
   `,
-  
+// rojo fuerte
   danger: css`
     background: linear-gradient(135deg, ${colors.error[600]}, ${colors.error[700]});
     color: ${colors.text.inverse};
@@ -215,7 +229,7 @@ const variantStyles = {
       transform: translateY(0);
     }
   `,
-  
+  // celeste brillante
   accent: css`
     background: linear-gradient(135deg, ${colors.primary[400]}, ${colors.primary[500]});
     color: ${colors.text.inverse};
@@ -234,22 +248,28 @@ const variantStyles = {
   `,
 };
 
-// Componente styled para el botón
+// Componente styled para el botón Union de todo 
+// ominimos de buttonporpr los campos children y onclick porque no son relevantes para el estilo
 const StyledButton = styled.button<Omit<ButtonProps, 'children' | 'onClick'>>`
-  ${baseButtonStyles}
+
+// Ponemos eso de dolar y las llaves porque inserta un bloque de css dinamico es decir
+// los estilos camvian segun los porps del componente como size o variant 
+
+${baseButtonStyles}
   ${({ size = 'md' }) => sizeStyles[size]}
   ${({ variant = 'primary' }) => variantStyles[variant]}
 `;
 
 // Componente para el estado de carga
+
 const LoadingSpinner = styled.div`
-  width: 16px;
+  width: 16px; 
   height: 16px;
-  border: 2px solid transparent;
+  border: 2px solid transparent;  // borde alrededor trasnparente
   border-top: 2px solid currentColor;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  
+   // el elemento va girando de dero q 360 grados y parece que esta girando
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -262,32 +282,44 @@ const LoadingSpinner = styled.div`
  * <Button variant="primary" size="md">Click me</Button>
  */
 
+// Creamos una funcion de react por lo que aqui mismo se pone jsx parecido a HTML  pero vive en JS
+// return <div>Hola mundo</div>
+// React.createElement('div', null, 'Hola mundo');
 
 export const Button: React.FC<ButtonProps> = ({
+  // Puede pasarte estas propiedades si no pasa alguna usa por defectos los que te damos aqui
   variant = 'primary',
   size = 'md',
   loading = false,
   disabled = false,
   icon,
   iconPosition = 'left',
-  children,
-  className,
-  onClick,
-  type = 'button',
-  ...props
+  children, // contenido del boton
+  className, //estilos extras
+  onClick,// funcion que se ejecuta al hacer click
+  type = 'button', //
+  ...props // todas las otras variables que no mencione
+//HASTA AQUI REACT SABE LO QUE SE PUEDE PASAR
 }) => {
-  const isDisabled = disabled || loading;
-  
+  // VARIABLES DE LOGICA
+  const isDisabled = disabled || loading; // Constante para evitar que el usuairo haga click mientras esta cargando 
+  // Funcion para saber que mostrar dentro del boton ssegun el estado de carga icono etc
   const renderContent = () => {
+    // despues del Return se usa fragmento de reat, sirve para agrupar JSX sin agregar otras etiquetas
+    // si esta cargando 
+    // aparecera el de carga con el contenido
     if (loading) {
       return (
         <>
-          <LoadingSpinner />
+          <LoadingSpinner /> 
           {children}
         </>
       );
     }
-    
+    // Icono pero no esta cargando
+    // Se lee que si el icono es left entonces se muestre el icono
+    // sino solo el contenido
+    //despues se compara el de derecha para que salga a la derecha del contenido
     if (icon) {
       return (
         <>
@@ -297,10 +329,11 @@ export const Button: React.FC<ButtonProps> = ({
         </>
       );
     }
-    
+    // si no esta cargando y no hay iconos 
     return children;
   };
   
+  // Devuelve lo que se muestra visualmente
   return (
     <StyledButton
       variant={variant}

@@ -28,7 +28,7 @@ export interface TechnologyTagProps {
   /** Clases CSS adicionales */
   className?: string;
   /** Función onClick */
-  onClick?: () => void;
+  onClick?: () => void; // Opcional, si tu quieres que el tag haga algo debes pasarle la funcion aqui
 }
 
 // Mapeo de tamaños
@@ -72,11 +72,15 @@ const variantMap = {
   }
 };
 
-// Componente styled para el tag
+// Componente styled para el tag y devimos con el pick que solo acepta 3 propr
 const StyledTag = styled.span<Pick<TechnologyTagProps, 'variant' | 'size' | 'onClick'>>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  // tamaño y tipografia condicional 
+  // Extrae el size y segun las configuraciones del sizemap de pading- fontsize lo configura
+  
   padding: ${({ size = 'md' }) => sizeMap[size].padding};
   font-size: ${({ size = 'md' }) => sizeMap[size].fontSize};
   font-weight: ${typography.fontWeight.medium};
@@ -85,12 +89,12 @@ const StyledTag = styled.span<Pick<TechnologyTagProps, 'variant' | 'size' | 'onC
   background-color: ${({ variant = 'primary' }) => variantMap[variant].backgroundColor};
   color: ${({ variant = 'primary' }) => variantMap[variant].color};
   transition: all 0.2s ease-in-out;
-  cursor: ${({ onClick }) => onClick ? 'pointer' : 'default'};
+  cursor: ${({ onClick }) => onClick ? 'pointer' : 'default'}; // si exsite onclick sera como boton pointer sino sera normal
   
   &:hover {
     background-color: ${({ variant = 'primary' }) => variantMap[variant].hoverBackground};
     transform: ${({ onClick }) => onClick ? 'translateY(-1px)' : 'none'};
-    box-shadow: ${({ onClick }) => onClick ? '0 2px 8px rgba(0, 0, 0, 0.2)' : 'none'};
+    box-shadow: ${({ onClick }) => onClick ? '0 2px 8px rgba(255, 0, 0, 0.2)' : 'none'};
   }
 `;
 
