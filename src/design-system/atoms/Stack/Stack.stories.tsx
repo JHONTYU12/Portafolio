@@ -33,6 +33,13 @@ Reemplaza divs con props para espaciado consistente.
       },
     },
   },
+  argTypes: {
+  direction: {
+    control: 'select',
+    options: ['column', 'row'],
+  },
+
+},
   tags: ['autodocs'],
 };
 
@@ -46,9 +53,9 @@ export const Default: Story = {
     gap: 4,
     children: (
       <>
-        <Text variant="h3">Elemento 1</Text>
-        <Text variant="body">Elemento 2</Text>
-        <Text variant="body">Elemento 3</Text>
+        <Text variant="h3" color='warning'>Elemento 1</Text>
+        <Text variant="body"  color='warning'>Elemento 2</Text>
+        <Text variant="body"  color='warning'>Elemento 3</Text>
       </>
     ),
   },
@@ -78,13 +85,14 @@ export const Centrado: Story = {
     justify: 'center',
     children: (
       <>
-        <Text variant="h2">Título Centrado</Text>
-        <Text variant="body" color="secondary">Descripción centrada</Text>
+        <Text variant="h2" color='warning'>Título Centrado</Text>
+        <Text variant="body" color="warning">Descripción centrada</Text>
         <Button variant="primary">Acción</Button>
       </>
     ),
   },
 };
+
 
 // Historia con diferentes gaps
 export const DiferentesGaps: Story = {
@@ -104,4 +112,6 @@ export const DiferentesGaps: Story = {
       </Stack>
     </Stack>
   ),
+
+  
 }; 

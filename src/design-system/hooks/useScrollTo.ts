@@ -16,19 +16,30 @@
  * <Text onClick={() => scrollTo()}>Proyectos</Text>
  */
 
+// HOOK DE REACT PARA MEMORIZAR FUNCIONES
+// EVITA QUE LA FUNCION SE VUELVA A CREAR CADA VEZ QU SE RENDERIZA
 import { useCallback } from 'react';
 
-export const useScrollTo = (to: string, offset: number = 0) => {
+//Declaracion de nuestro hook personalizado
+// to => id del elemento a hacer scroll
+// con el offset le dicescuando espacio dejas arriba cuando scrolee
+// por el header
+
+export const useScrollTo = (to: string, offset: number = 0) => { 
+  // scrollTo te movera por la paguina
+  // envuelto en usecallbackl para que no cree la unciona cada vez que el componente se actualiza
   const scrollTo = useCallback(() => {
     const element = document.getElementById(to);
     if (element) {
+      // Distancia entre el borde superior y el inicio del elemento - el espacio que decidimos dejar
       const elementPosition = element.offsetTop - offset;
-      
+      // Comando del scroll real
       window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
+        top: elementPosition, //Mover la vista a ese punto vertical
+        behavior: 'smooth' //scroll suave
       });
     }
+    //Se guarda el calculo en memoria para no volverlo hacer
   }, [to, offset]);
 
   return scrollTo;

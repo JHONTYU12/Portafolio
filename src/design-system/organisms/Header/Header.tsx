@@ -27,7 +27,7 @@ export interface HeaderProps {
   navigation?: Array<{
     label: string;
     href: string;
-    active?: boolean;
+    active?: boolean; // Si esta marcado como el actual
   }>;
   /** Acciones del header (botones, etc.) */
   actions?: React.ReactNode;
@@ -36,6 +36,8 @@ export interface HeaderProps {
   /** Estado fijo */
   fixed?: boolean;
   /** Offset para scroll suave (para headers fijos) */
+  /** Espacio a respetar cuando se hace scroll */
+
   scrollOffset?: number;
   /** Clases CSS adicionales */
   className?: string;
@@ -53,14 +55,20 @@ const StyledHeader = styled.header<Pick<HeaderProps, 'transparent' | 'fixed'>>`
     transparent ? 'none' : `1px solid ${colors.border.primary}`};
   box-shadow: ${({ transparent }) => 
     transparent ? 'none' : '0 4px 20px rgba(0, 0, 0, 0.3)'};
+
+  // Posicionamiento fijo si es necesario
   position: ${({ fixed }) => fixed ? 'fixed' : 'relative'};
+
+  // Ubicacion de nuestro header
   top: 0;
   left: 0;
   right: 0;
+  
+  //Profundidad del header
+  // para que el header no quede escondido
   z-index: ${zIndex.sticky};
+
   transition: all 0.3s ease-in-out;
-  backdrop-filter: ${({ transparent }) => 
-    transparent ? 'none' : 'blur(12px)'};
   
   @media (max-width: 768px) {
     padding: ${spacing[4]} ${spacing[6]};
@@ -96,7 +104,7 @@ const Navigation = styled.nav`
 const Actions = styled.div`
   display: flex;
   align-items: center;
-  gap: ${spacing[4]};
+  gap: ${spacing[10]};
   
   @media (max-width: 768px) {
   gap: ${spacing[3]};
@@ -182,6 +190,7 @@ const MobileNavigation = styled.nav`
  * />
  * ```
  */
+
 export const Header: React.FC<HeaderProps> = ({
   logo,
   navigation = [],
@@ -192,6 +201,8 @@ export const Header: React.FC<HeaderProps> = ({
   className,
   ...props
 }) => {
+
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Hooks para navegación suave - llamados al nivel superior

@@ -30,13 +30,16 @@ export interface CardProps {
   image?: {
     src: string;
     alt: string;
-  };
+  }
   /** Acciones de la tarjeta */
-  actions?: React.ReactNode;
+  actions?: React.ReactNode; // Iconos, imagenes,link al final de las tarjetas
   /** Estado de elevación */
-  elevated?: boolean;
+  // Sombras predefinida que se da a las tarjetas 
+  //Si no pasa nada es false
+
+  elevated?: boolean; // 
   /** Estado de hover */
-  hoverable?: boolean;
+  hoverable?: boolean; //
   /** Clases CSS adicionales */
   className?: string;
   /** Función onClick */
@@ -53,39 +56,27 @@ const StyledCard = styled.div<Pick<CardProps, 'elevated' | 'hoverable' | 'onClic
   position: relative;
   
   /* Elevación */
+  // Si elevated es true se aplica esa sombra
+
   ${({ elevated }) => elevated && `
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  `}
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); `}
   
   /* Hover */
+
+  // Si almenos uno de los dos es true entonces ejecuta
   ${({ hoverable, onClick }) => (hoverable || onClick) && `
-    cursor: ${onClick ? 'pointer' : 'default'};
-    
+
+  // Si existe funcion click entonces se pone una manito
+    cursor: ${onClick ? 'pointer' : 'default'}; 
+
+    //Cuando se aplaste el mouse se 
     &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+      transform: translateY(-4px); // Se mueva un poco para arriba
+      box-shadow: 0 16px 48px rgba(67, 67, 67, 0.4); // una sombra
       border-color: ${colors.border.accent};
     }
   `}
-  
-  /* Efecto de borde superior */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, ${colors.primary[400]}, ${colors.accent[400]});
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  ${({ hoverable, onClick }) => (hoverable || onClick) && `
-    &:hover::before {
-      opacity: 1;
-    }
-  `}
+
 `;
 
 // Componente para la imagen
@@ -93,15 +84,18 @@ const CardImage = styled.div`
   width: 100%;
   height: 220px;
   position: relative;
-  overflow: hidden;
-  
+  overflow: hidden; // ocultamos cualquier cosa que se salga del componente
+
   img {
     width: 100%;
     height: 100%;
   object-fit: cover;
     transition: transform 0.3s ease-in-out;
   }
-  
+
+  //Pasamos StyleCard y revisamos que si esta en hover
+  // & => en este componente que estamos cardimag, toma el img y
+  //hazlo mas grande
   ${StyledCard}:hover & img {
     transform: scale(1.05);
   }
@@ -117,8 +111,9 @@ const CardContent = styled.div`
 `;
 
 // Componente para las acciones
+//Ver proyectos
 const CardActions = styled.div`
-  padding: ${spacing[6]} ${spacing[8]};
+  padding: ${spacing[4]} ${spacing[8]};
   border-top: 1px solid ${colors.border.primary};
   display: flex;
   gap: ${spacing[4]};
@@ -150,10 +145,12 @@ const CardActions = styled.div`
  * </Card>
  * ```
  */
+
 export const Card: React.FC<CardProps> = ({
+  //Datos que puedes pasarle a la Card
   title,
   subtitle,
-  children,
+  children, // Todo lo que pongas dentro de la card <card>.........<card/>
   image,
   actions,
   elevated = false,
@@ -162,6 +159,8 @@ export const Card: React.FC<CardProps> = ({
   onClick,
   ...props
 }) => {
+
+  //Lo que se va a mostrar en pantalla
   return (
     <StyledCard
       elevated={elevated}
@@ -171,6 +170,7 @@ export const Card: React.FC<CardProps> = ({
       {...props}
     >
       {/* Imagen */}
+      {/* si existe Imagen muestra esto sino no muestres nada */}
       {image && (
         <CardImage>
           <img src={image.src} alt={image.alt} />
@@ -178,15 +178,19 @@ export const Card: React.FC<CardProps> = ({
       )}
       
       {/* Contenido */}
+      {/* Usamos los atomos de stack y de text */}
       <CardContent>
         {/* Header usando Stack para separación atómica */}
+        {/* Si hay titulo o subtitulo muestra esto */}
         {(title || subtitle) && (
           <Stack direction="column" gap={4}>
-            {title && (
+            {/* Si exsite titulo */}
+            {title && ( 
               <Text variant="h4" color="primary">
                 {title}
               </Text>
             )}
+            {/* Si existe subtitulo */}
             {subtitle && (
               <Text variant="body" color="secondary">
                 {subtitle}
@@ -196,6 +200,7 @@ export const Card: React.FC<CardProps> = ({
         )}
         
         {/* Contenido principal con separación atómica */}
+        {/* En style si hay titulo osubtitulo dale un margen arriba  */}
         {children && (
           <Stack direction="column" gap={6} style={{ marginTop: title || subtitle ? spacing[6] : 0 }}>
         {children}

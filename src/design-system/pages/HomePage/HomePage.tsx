@@ -117,11 +117,11 @@ export const HomePage: React.FC<HomePageProps> = ({
   featuredProjects = [
     {
       id: "1",
-      title: "ApexGuns",
+      title: "ApexSentinels",
       description: "Plataforma de monitoreo en tiempo real de armas utilizando IA y Machine Learning.",
       technologies: ["React", "Node.js", "MongoDB", "Python"],
-      image: "/images/ApexGun.png",
-      link: "https://apexgun.app/#/login"
+      image: "/images/ApexSentinels.png",
+      link: "https://apexsentinels.app/#/login"
     },
     {
       id: "2",
@@ -136,7 +136,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       title: "Sistema contable para microempresas",
       description: "Sitio web enfocado en microempresas para el manejo de asientos contables.",
       technologies: ["React", "TypeScript", "Python", "MongoDB"],
-      image: "/images/Plutus.png",
+      image: "/images/plutus.png",
       link: "https://github.com/JHONTYU12/plutus-app"
     },
     {

@@ -8,6 +8,8 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Card } from './Card';
 import { Button } from '../../atoms';
 import { ProjectTechnologies } from '../ProjectTechnologies/ProjectTechnologies';
+import { color } from 'framer-motion';
+import { colors } from '../../tokens';
 
 const meta: Meta<typeof Card> = {
   title: 'Design System/Molecules/Card',
@@ -43,7 +45,7 @@ export const Default: Story = {
   args: {
     title: 'Título de la Tarjeta',
     subtitle: 'Subtítulo descriptivo de la tarjeta que se separa correctamente del título usando Stack.',
-    children: 'Contenido de la tarjeta que puede incluir cualquier elemento.',
+    children: <div>Contenidod de la tarjeta que puede incluir cualquier elemento.' </div>,
   },
 };
 

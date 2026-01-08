@@ -21,9 +21,9 @@ import { TechnologyIcon } from '../../atoms/TechnologyIcon/TechnologyIcon';
 
 // Props del componente TechnologyCard
 export interface TechnologyCardProps {
-  /** Nombre de la tecnología */
+  /** Nombre de la tecnología (React,JS,etc) */
   name: string;
-  /** Categoría de la tecnología */
+  /** Categoría de la tecnología (fronend, bd, backend) */
   category: string;
   /** URL del icono de la tecnología */
   icon?: string;
@@ -34,7 +34,9 @@ export interface TechnologyCardProps {
 }
 
 // Componente styled para la tarjeta
-const StyledCard = styled.div<{ onClick?: () => void }>`
+// La tarjeta puede recibir una funcion onClick como prpouedad que va a servir para cambiar sus propiedades
+
+const StyledCard = styled.div<Pick<TechnologyCardProps,'onClick'>>`
   display: flex;
   align-items: center;
   gap: ${spacing[4]};
@@ -43,23 +45,43 @@ const StyledCard = styled.div<{ onClick?: () => void }>`
   border-radius: ${spacing[3]};
   border: 1px solid ${colors.border.primary};
   transition: all 0.3s ease-in-out;
+
+  //Cuando creamos pseudelementos sepa donde posicionarse
   position: relative;
+
+  //Oculta cualquier cosa que se salga del card
   overflow: hidden;
   cursor: ${({ onClick }) => onClick ? 'pointer' : 'default'};
   
+  //Creamos un pseudoelemtno invisible
+
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
+
+  //Se posiciona horizontalmente arriba de card
+
+  //Coloca el borde arriba
+  top:0;
+  //Inicia en la izquierda
+    left:0;
+  //Termina en la derecha 
     right: 0;
+
     height: 3px;
     background: linear-gradient(90deg, ${colors.primary[400]}, ${colors.accent[400]});
+
+    //Comienza invisible como si estuvieras constraido
+    //Para la animacion
     transform: scaleX(0);
+
+    //Animas suavemente
+    //Cuando salga
     transition: transform 0.3s ease-in-out;
   }
   
   &:hover {
+  //Movimiento cuando paso el mouse de que se alza
     transform: translateY(-4px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
     border-color: ${colors.border.accent};
@@ -110,6 +132,11 @@ export const TechnologyCard: React.FC<TechnologyCardProps> = ({
         <Text variant="caption" color="secondary">
           {category}
         </Text>
+      {/* <Stack style={{ marginLeft: '50px', marginTop: '50px' }} direction="row" gap={2}>
+        <TechnologyIcon src={icon} alt={name} size="sm" />
+        <TechnologyIcon src={icon} alt={name} size="sm" />
+        <TechnologyIcon src={icon} alt={name} size="sm" />
+      </Stack> */}
       </Stack>
     </StyledCard>
   );

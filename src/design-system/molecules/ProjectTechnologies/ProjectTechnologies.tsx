@@ -34,7 +34,7 @@ const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: ${spacing[2]};
-  margin-top: ${spacing[6]};
+  margin-top: ${spacing[4]};
 `;
 
 /**
@@ -60,7 +60,13 @@ export const ProjectTechnologies: React.FC<ProjectTechnologiesProps> = ({
         {title}
       </Text>
       <StyledContainer>
+        {/* .map ==> Recorrer una lista y devolver algo por cada uno */}
+        {/* Por cada tecnologia en la lista crea un bloque visual */}
         {technologies.map((tech, index) => (
+          // En el arreglo sacas tech osea la tecnologia el nomnre
+          // el index osea la posicion del arreglo de ese elemnto
+          // react necesita un id unico para cada uno y el idez al ser la posicion dela rreglo es unica 
+          // se le pasa como key en cada componente
           <TechnologyTag key={index} variant="primary">
             {tech}
           </TechnologyTag>
