@@ -150,6 +150,3 @@ primary: {
     accent: '#38bdf8',    // borde resaltado
   },
 } as const;
-/**
- “as const le dice al sistema que todos estos colores son fijos, que no van a cambiar, y que debe tratarlos como si fueran definitivos. Esto evita errores, ayuda a autocompletar los nombres, y mantiene el código más seguro.”
- */
