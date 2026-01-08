@@ -117,11 +117,11 @@ export const HomePage: React.FC<HomePageProps> = ({
   featuredProjects = [
     {
       id: "1",
-      title: "ApexSentinels",
+      title: "Apex Sentinels",
       description: "Plataforma de monitoreo en tiempo real de armas utilizando IA y Machine Learning.",
       technologies: ["React", "Node.js", "MongoDB", "Python"],
       image: "/images/ApexSentinels.png",
-      link: "https://apexsentinels.app/#/login"
+      link: "https://app.apexsentinels.com/#/login"
     },
     {
       id: "2",
